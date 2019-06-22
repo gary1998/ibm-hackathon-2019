@@ -1,0 +1,320 @@
+<html>
+    <head>
+        <title>IBM Hack Challenge 2019</title>  
+        <link rel="icon" href="edge_logo.png" type="image/icon type">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <link rel="stylesheet" type="text/css" href="dist/semantic.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script src="dist/semantic.js"></script>
+        <body>
+            <div class="ui top horizontal labeled menu" id="topbar">
+                <a class="item">
+                    <i class="angle right icon"></i>
+                    <strong>Team EDGE</strong>
+                </a>
+                <a class="item">
+                    IBM Hack Challenge 2019
+                </a>
+                <a class="item">
+                    About Team EDGE
+                </a>
+                <a class="item">
+                    Contact
+                </a>
+                <a class="item">
+                    Documentation
+                </a>
+                <a class="item">
+                    Presentation
+                </a>
+                <a class="item right" id="profile">
+                    <i class="twitter icon"></i>
+                    <p id="name">Login using Twitter</p>
+                </a>
+            </div>
+            <h2 class="ui center aligned icon header" id="logo">
+                <i class="circular users icon"></i>
+                Friends Affinity Finder v1.0
+            </h2>
+            <div class="ui text container" id="contentdiv">
+                <div id="content"><strong>Problem Statement</strong><br><br>
+                    We live in the age of social media connected with people whom we may not know personally. In such scenarios it always helps in researching about person’s attributes to understand more about the commonalities that we share with our friends in terms of their behavior, choices, likes and dislikes and so much more.<br/><br/>The problem statement can leverage on the Big Five personality characteristics which represent the most widely used model for generally describing how a person engages with the world based on five primary dimensions namely Agreeableness, Conscientiousness, Extraversion, Emotional range and Openness. Each of these top-level dimensions has six facets that further characterize an individual according to the dimension and helps in scientific explanation of person’s choices.
+                </div>
+            </div>
+            <div id="resultsbtndiv">
+                <button id="resultsbtn" class="ui disabled labeled icon button">
+                    <i class="file alternate icon"></i>
+                    Show Results
+                </button>
+            </div>
+            
+            <div id="loginmodal" class="ui fullscreen modal">
+                    <i class="close icon"></i>
+                    <div class="header">
+                      Login using Twitter
+                    </div>
+                    <div class="image content">
+                      <div class="ui large image">
+                        <img src="https://c.slashgear.com/wp-content/uploads/2018/09/twitterbirds-980x589-980x589.png">
+                      </div>
+                      <div class="description">
+                        <div class="ui header">Please provide your Twitter Developer account credentials.</div>
+                            <div class="ui fluid left icon input">
+                                <input type="text" id="conskey" placeholder="Enter your Consumer Key">
+                                <i class="key icon"></i>
+                            </div>
+                            <br>
+                            <div class="ui fluid left icon input">
+                                <input type="text" id="conssec" placeholder="Enter your Consumer Secret Key">
+                                <i class="key icon"></i>
+                            </div>
+                            <br>
+                            <div class="ui fluid left icon input">
+                                <input type="text" id="acctok" placeholder="Enter your Access Token">
+                                <i class="key icon"></i>
+                            </div>
+                            <br>
+                            <div class="ui fluid left icon input">
+                                <input type="text" id="accsec" placeholder="Enter your Secret Access Token">
+                                <i class="key icon"></i>
+                            </div>
+                      </div>
+                    </div>
+                    <div class="actions">
+                      <div class="ui black deny right labeled icon button" id="close">
+                        <i class="close icon"></i><p id="dangerbtn">Cancel</p>
+                      </div>
+                      <div class="ui positive right labeled icon button" id="auth">
+                        <i class="checkmark icon"></i><p id="successbtn">Authenticate</p>
+                      </div>
+                    </div>
+            </div>
+            <div id="textmodal" class="ui fullscreen modal">
+                <i class="close icon"></i>
+                <div class="header">
+                    Text Analyzer
+                </div>
+                <div class="image content">
+                    <div class="ui large image">
+                        <img src="https://live.staticflickr.com/8372/8540478427_d6041d01b2_b.jpg">
+                    </div>
+                    <div class="description">
+                        <div class="ui header">Enter text to analyze.</div>
+                            <div class="ui fluid form textarea">
+                                <textarea id='textcontent' cols='100' rows='12' id="textanalyzercont" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."></textarea>
+                            </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="ui black deny right labeled icon button" id="close">
+                        <i class="close icon"></i><p id="dangerbtn">Cancel</p>
+                    </div>
+                    <div class="ui positive right labeled icon button" id="textmodalpribtn">
+                        <i class="checkmark icon"></i><p id="successbtn">Analyze</p>
+                    </div>
+                </div>
+            </div>
+            <div id="wait" class="ui basic modal">
+                <div class="ui icon header">
+                    <i class="wait icon"></i>
+                    Loading...
+                </div>
+            </div>
+        </body>
+    <script>
+        var fflist = [];
+        var result = [];
+        function analyze(text, name)
+        {
+            $.ajax({
+                url: "http://localhost:5000/analyze",
+                method:"GET",
+                dataType: "json",
+                data:{"data":text},
+                success: function(e)
+                {
+                    result.push(
+                        {
+                            "name": name,
+                            "personality": e.personality
+                        }
+                    );
+                    Toastify({
+                        text: "Analyzed and Saved!",
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
+                    }).showToast();
+                    $('#resultsbtn').removeClass("disabled");
+                    $('#wait').modal("hide");
+                },
+                error: function(er)
+                {
+                    Toastify({
+                        text: "Very few tweets, can't analyze!",
+                        backgroundColor: "linear-gradient(to right, red, orange)"
+                    }).showToast();
+                    $('#wait').modal("hide");
+                }
+            });
+        }
+        $('#textmodalpribtn').on("click",function()
+        {
+            $('#wait').modal("show");
+            analyze($('#textcontent').val(),"raw text");
+        });
+        $('#profile').on("click",function()
+        {
+            $('#loginmodal').modal("show");
+        });
+        $('#auth').on("click", function()
+        {
+            $('#wait').modal("show");
+            let consKey = $('#conskey').val();
+            let consSec = $('#conssec').val();
+            let accessTok = $('#acctok').val();
+            let accessSec = $('#accsec').val();
+
+            $.ajax({
+                url:"http://localhost:5000/twitterLogin",
+                method:"GET",
+                async: true,
+                data:{"consKey":consKey,"consSec":consSec,"accessTok":accessTok,"accessSec":accessSec},
+                success:function(e)
+                {
+                    $('#conskey').attr("disabled",true);
+                    $('#conssec').attr("disabled",true);
+                    $('#acctok').attr("disabled",true);
+                    $('#accsec').attr("disabled",true);
+                    $('#auth').hide();
+                    $('#name')[0].innerHTML = e.name;
+                    Toastify({
+                        text: "Logged in as "+e.name,
+                        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)"
+                    }).showToast();
+                    for(var i=0;i<e.friendsNameList.length;i++)
+                    {
+                        fflist.push(e.friendsNameList[i]);
+                    }
+                    for(var j=0;j<e.followersNameList.length;j++)
+                    {
+                        fflist.push(e.followersNameList[j]);
+                    }
+                    $('#content').remove();
+                    $('#contentdiv').append("<div class='ui fluid search selection dropdown'><input type='hidden' id='ffname' name='user'/><i class='dropdown icon'></i><div class='default text'>Select Friend/Follower</div><div class='menu' id='menu'>");
+                    for(var k=0;k<fflist.length;k++)
+                    {
+                        $('#menu').append("<div class='item' data-value='"+fflist[k]+"'>"+fflist[k]+"</div>");
+                    }
+                    $('#contentdiv').append("</div>");
+                    $('#contentdiv').append("<div id='btngroup' class='ui blue buttons'><button class='ui labeled icon button' id='analyzemebtn'><i class='user circle icon'></i>Analyze Me</button><div class='or'></div><button class='ui labeled icon button' id='analyzeselected'><i class='arrow alternate cirle up icon'></i>Analyze Selected</button><div class='or'></div><button class='ui labeled icon button' id='analyzetextbtn'><i class='paragraph icon'></i>Analyze Text</button></div>");
+                    $('#analyzemebtn').on("click",function()
+                    {
+                        $('#wait').modal("show");
+                        $.ajax({
+                            url: "http://localhost:5000/fetchMe",
+                            method:"GET",
+                            success: function(e)
+                            {
+                                analyze(e.tweets,"myself");
+                            },
+                            error: function(er)
+                            {
+                                Toastify({
+                                    text: er.statusText,
+                                    backgroundColor: "linear-gradient(to right, red, orange)"
+                                }).showToast();
+                            }
+                        });
+                    });
+                    $('#analyzeselected').on("click",function()
+                    {
+                        $('#wait').modal("show");
+                        $.ajax({
+                            url: "http://localhost:5000/fetch",
+                            method:"GET",
+                            data:{"name":$('#ffname').val()},
+                            success: function(e)
+                            {
+                                analyze(e.tweets,$('#ffname').val());
+                            },
+                            error: function(er)
+                            {
+                                Toastify({
+                                    text: er.statusText,
+                                    backgroundColor: "linear-gradient(to right, red, orange)"
+                                }).showToast();
+                            }
+                        });
+                    });
+                    $('#analyzetextbtn').on("click",function()
+                    {
+                        $('#textmodal').modal("show");
+                    });
+                    $('.ui.dropdown')
+                        .dropdown()
+                    ;
+                    $('#wait').modal("hide");
+                },
+                error: function(er)
+                {
+                    Toastify({
+                        text: er.statusText,
+                        backgroundColor: "linear-gradient(to right, red, orange)"
+                    }).showToast();
+                    $('#wait').modal("hide");
+                }
+            });
+        });
+        $('#resultsbtn').on("click",function()
+        {
+            $('#wait').show();
+            $('#contentdiv').remove();
+            $('#resultsbtn').remove();
+            $('#resultsbtndiv').addClass("ui three column grid");
+            for(var x=0;x<result.length;x++)
+            {
+                $('#resultsbtndiv').append(`
+                                            <div class="column">
+                                                <div class="ui fluid raised card">
+                                                    <div class="content">
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[0].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].personality[0].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[1].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].personality[1].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[2].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].personality[2].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[3].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].personality[3].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[4].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].personality[4].name+`</div>
+                                                            </div>
+                                                        <a class="header">`+result[x].name+`</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `);
+                $('.ui.indicating.progress').progress();
+            }
+        });
+    </script>
+</html>
