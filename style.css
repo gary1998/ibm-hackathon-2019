@@ -15,3 +15,7 @@
     height: 10rem;
     width: 10rem;
 }
+#graphrenderbtn{
+    margin: 2rem 2rem 2rem 2rem;
+    text-align: center;
+}

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from ibm_watson import PersonalityInsightsV3
+from ibm_watson import PersonalityInsightsV3, ToneAnalyzerV3, NaturalLanguageUnderstandingV1
+from ibm_watson.natural_language_understanding_v1 import Features, SentimentOptions, EmotionOptions
 import json
 import tweepy
 
@@ -60,18 +61,28 @@ def fetchMyFunc():
 def analyzeFunc():
     if 'data' in request.args:
         text = request.args['data']
+
+        natural_language_understanding = NaturalLanguageUnderstandingV1(
+            version='2019-07-12',
+            iam_apikey='rW0-13R2RqRbko3bNzOaz1E8toSIy2qH1019AWiHkMZ9',
+            url='https://gateway-lon.watsonplatform.net/natural-language-understanding/api'
+        )
+        emotions = natural_language_understanding.analyze(
+            text=text,
+            features=Features(emotion=EmotionOptions(document=True))
+        ).get_result()
+
         personality_insights = PersonalityInsightsV3(
             version='2017-10-13',
             iam_apikey='uA6GpdKCXJyJCqJyhQEqwH9jSJxqlJhgYq7-uBBfPYL5',
             url='https://gateway-lon.watsonplatform.net/personality-insights/api'
         )
-        profile = personality_insights.profile(
+        personality = personality_insights.profile(
             text.encode('utf-8'),
-            'application/json',
-            consumption_preferences=True,
-            raw_scores=True
+            'application/json'
         ).get_result()
-        return json.dumps(profile)
+
+        return jsonify(emotions=emotions, personality=personality)
     
 if __name__ == '__main__':
     app.run()

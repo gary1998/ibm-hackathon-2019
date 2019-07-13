@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
     <head>
         <title>IBM Hack Challenge 2019</title>  
         <link rel="icon" href="edge_logo.png" type="image/icon type">
@@ -14,19 +14,19 @@
                     <i class="angle right icon"></i>
                     <strong>Team EDGE</strong>
                 </a>
-                <a class="item">
+                <a href="index.html" class="item">
                     IBM Hack Challenge 2019
                 </a>
-                <a class="item">
+                <a href="#" class="item">
                     About Team EDGE
                 </a>
-                <a class="item">
+                <a href="#" class="item">
                     Contact
                 </a>
-                <a class="item">
+                <a href="#" class="item">
                     Documentation
                 </a>
-                <a class="item">
+                <a href="#" class="item">
                     Presentation
                 </a>
                 <a class="item right" id="profile">
@@ -62,22 +62,22 @@
                       <div class="description">
                         <div class="ui header">Please provide your Twitter Developer account credentials.</div>
                             <div class="ui fluid left icon input">
-                                <input type="text" id="conskey" placeholder="Enter your Consumer Key">
+                                <input type="password" id="conskey" placeholder="Enter your Consumer Key">
                                 <i class="key icon"></i>
                             </div>
                             <br>
                             <div class="ui fluid left icon input">
-                                <input type="text" id="conssec" placeholder="Enter your Consumer Secret Key">
+                                <input type="password" id="conssec" placeholder="Enter your Consumer Secret Key">
                                 <i class="key icon"></i>
                             </div>
                             <br>
                             <div class="ui fluid left icon input">
-                                <input type="text" id="acctok" placeholder="Enter your Access Token">
+                                <input type="password" id="acctok" placeholder="Enter your Access Token">
                                 <i class="key icon"></i>
                             </div>
                             <br>
                             <div class="ui fluid left icon input">
-                                <input type="text" id="accsec" placeholder="Enter your Secret Access Token">
+                                <input type="password" id="accsec" placeholder="Enter your Secret Access Token">
                                 <i class="key icon"></i>
                             </div>
                       </div>
@@ -123,6 +123,8 @@
                 </div>
             </div>
         </body>
+    <script src="https://cdn.jsdelivr.net/npm/pca-js@1.0.0/pca.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
         var fflist = [];
         var result = [];
@@ -138,7 +140,7 @@
                     result.push(
                         {
                             "name": name,
-                            "personality": e.personality
+                            "response": e
                         }
                     );
                     Toastify({
@@ -278,36 +280,177 @@
                                             <div class="column">
                                                 <div class="ui fluid raised card">
                                                     <div class="content">
-                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[0].percentile*100)+`">
+
+
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.emotions.emotion.document.emotion.anger*100)+`">
                                                                 <div class="bar">
                                                                     <div class="progress"></div>
                                                                 </div>
-                                                                <div class="label">`+result[x].personality[0].name+`</div>
+                                                                <div class="label">Anger</div>
                                                             </div>
-                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[1].percentile*100)+`">
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.emotions.emotion.document.emotion.joy*100)+`">
                                                                 <div class="bar">
                                                                     <div class="progress"></div>
                                                                 </div>
-                                                                <div class="label">`+result[x].personality[1].name+`</div>
+                                                                <div class="label">Joy</div>
                                                             </div>
-                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[2].percentile*100)+`">
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.emotions.emotion.document.emotion.disgust*100)+`">
                                                                 <div class="bar">
                                                                     <div class="progress"></div>
                                                                 </div>
-                                                                <div class="label">`+result[x].personality[2].name+`</div>
+                                                                <div class="label">Disgust</div>
                                                             </div>
-                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[3].percentile*100)+`">
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.emotions.emotion.document.emotion.sadness*100)+`">
                                                                 <div class="bar">
                                                                     <div class="progress"></div>
                                                                 </div>
-                                                                <div class="label">`+result[x].personality[3].name+`</div>
+                                                                <div class="label">Sadness</div>
                                                             </div>
-                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].personality[4].percentile*100)+`">
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.emotions.emotion.document.emotion.fear*100)+`">
                                                                 <div class="bar">
                                                                     <div class="progress"></div>
                                                                 </div>
-                                                                <div class="label">`+result[x].personality[4].name+`</div>
+                                                                <div class="label">Fear</div>
                                                             </div>
+
+
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.values[0].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.values[0].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.values[1].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.values[1].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.values[2].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.values[2].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.values[3].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.values[3].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.values[4].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.values[4].name+`</div>
+                                                            </div>
+
+
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.personality[0].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.personality[0].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.personality[1].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.personality[1].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.personality[2].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.personality[2].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.personality[3].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.personality[3].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.personality[4].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.personality[4].name+`</div>
+                                                            </div>
+
+
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[0].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[0].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[1].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[1].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[2].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[2].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[3].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[3].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[4].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[4].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[5].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[5].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[6].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[6].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[7].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[7].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[8].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[8].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[9].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[9].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[10].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[10].name+`</div>
+                                                            </div>
+                                                            <div class="ui indicating progress" data-total="100" data-percent="`+parseInt(result[x].response.personality.needs[11].percentile*100)+`">
+                                                                <div class="bar">
+                                                                    <div class="progress"></div>
+                                                                </div>
+                                                                <div class="label">`+result[x].response.personality.needs[11].name+`</div>
+                                                            </div>
+
                                                         <a class="header">`+result[x].name+`</a>
                                                     </div>
                                                 </div>
@@ -315,6 +458,84 @@
                                         `);
                 $('.ui.indicating.progress').progress();
             }
+            $('body').append(`<div id="graphrenderbtn">
+                <button id="resultsbtn" class="ui labeled icon button">
+                    <i class="object group outline icon"></i>
+                    Render Graph
+                </button>
+            </div>`);
+            $('#graphrenderbtn').on("click",function()
+            {
+                $('#wait').show();
+                $('#resultsbtndiv').remove();
+                renderGraph(result);
+            });
         });
+        function renderGraph(payload)
+        {
+            $('#graphrenderbtn').remove();
+            $('body').append("<div id='graph'></div>")
+            var nameList = [];
+            var numList = [];
+            payload.forEach(function(item)
+            {
+                nameList.push(item.name);
+            });
+            let details = [];
+            payload.forEach(function(item)
+            {
+                details = [];
+                details.push(item.response.emotions.emotion.document.emotion.anger);
+                details.push(item.response.emotions.emotion.document.emotion.disgust);
+                details.push(item.response.emotions.emotion.document.emotion.joy);
+                details.push(item.response.emotions.emotion.document.emotion.sadness);
+                details.push(item.response.emotions.emotion.document.emotion.fear);
+                
+                details.push(item.response.personality.needs[0].percentile);
+                details.push(item.response.personality.needs[1].percentile);
+                details.push(item.response.personality.needs[2].percentile);
+                details.push(item.response.personality.needs[3].percentile);
+                details.push(item.response.personality.needs[4].percentile);
+                details.push(item.response.personality.needs[5].percentile);
+                details.push(item.response.personality.needs[6].percentile);
+                details.push(item.response.personality.needs[7].percentile);
+                details.push(item.response.personality.needs[8].percentile);
+                details.push(item.response.personality.needs[9].percentile);
+                details.push(item.response.personality.needs[10].percentile);
+                details.push(item.response.personality.needs[11].percentile);
+                
+                details.push(item.response.personality.personality[0].percentile);
+                details.push(item.response.personality.personality[1].percentile);
+                details.push(item.response.personality.personality[2].percentile);
+                details.push(item.response.personality.personality[3].percentile);
+                details.push(item.response.personality.personality[4].percentile);
+
+                details.push(item.response.personality.values[0].percentile);
+                details.push(item.response.personality.values[1].percentile);
+                details.push(item.response.personality.values[2].percentile);
+                details.push(item.response.personality.values[3].percentile);
+                details.push(item.response.personality.values[4].percentile);
+
+                numList.push(details);
+            });
+            var vectors = PCA.getEigenVectors(numList);
+            var adData = PCA.computeAdjustedData(numList,vectors[0],vectors[1],vectors[2]);
+            var graphData = [];
+            for(var i=0;i<adData.formattedAdjustedData[0].length;i++)
+            {
+                graphData.push(
+                    {
+                        x: [adData.formattedAdjustedData[0][i]],
+                        y: [adData.formattedAdjustedData[1][i]],
+                        z: [adData.formattedAdjustedData[2][i]],
+                        mode: 'markers',
+                        type: 'scatter3d',
+                        name: nameList[i],
+                        marker: { size: 10 }
+                    },
+                );
+            }
+            Plotly.newPlot('graph', graphData);
+        }
     </script>
 </html>
