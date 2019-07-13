@@ -12,6 +12,7 @@
 
 3) Access the UI on any web-browser (typically on port 8000)
 <pre>https://localhost:8000</pre>
+![https://github.com/gary1998/ibm-hackathon-2019/blob/master/dashboard.png]
 
 4) Login to UI using Twitter Developer Credentials
 
