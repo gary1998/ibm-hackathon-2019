@@ -1,7 +1,9 @@
 # FRIEND AFFINITY FINDER v1.0 (2019) #
 ## By Team EDGE ##
 ### IBM HackChallenge 2019 ###
-</hr>
+
+<hr>
+
 #### Steps to run ####
 
 **1) Start the backend server by following commands:**
