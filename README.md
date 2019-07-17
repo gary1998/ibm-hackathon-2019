@@ -7,13 +7,13 @@
 #### Steps to run ####
 
 **1) Start the backend server by following commands:**
-<pre>python backend.py</pre>
+<pre>python source_code/backend.py</pre>
 
 **2) Start the frontend UI on server by following command:**
 <pre>python -m SimpleHTTPServer</pre>
 
 **3) Access the UI on any web-browser (typically on port 8000)**
-<pre>https://localhost:8000</pre>
+<pre>http://localhost:8000/source_code/</pre>
 
 ![Dashboard](https://github.com/gary1998/ibm-hackathon-2019/blob/master/source_code/dashboard.png)
 
