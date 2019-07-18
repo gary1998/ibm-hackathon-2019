@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: ibmhack
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backendimage
+        image: "gary29198/ibm-hack-backend:latest"
+        imagePullPolicy: Always
+        command: [ "python", "-d", "backend.py"]

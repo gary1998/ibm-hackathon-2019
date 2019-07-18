@@ -10,9 +10,12 @@
 
 #### Steps to run ####
 
+**0) Clone the repository, ofcourse:**
+<pre>git clone https://github.com/gary1998/ibm-hackathon-2019.git</pre>
+
 **1) Install all the dependencies on your system:**
 <pre>cd source_code</pre>
-<pre>pip install requirements.txt</pre>
+<pre>pip install -r requirements.txt</pre>
 
 **2) Start the backend server by following commands:**
 <pre>python source_code/backend.py</pre>
@@ -42,5 +45,12 @@
 
 ![3D Affinity Graph](https://github.com/gary1998/ibm-hackathon-2019/blob/master/source_code/graph.png)
 
+<hr>
+<h6> You can also use Docker Containers: <h6>
+<pre> docker pull gary29198/faf-frontend:latest </pre>
+<pre> docker pull gary29198/faf-backend:latest </pre>
+<pre> docker run -d -p 5000:5000 gary29198/faf-frontend </pre>
+<pre> docker run -d -p 8000:8000 gary29198/faf-backend </pre>
+<hr>
 
 #### Copyright EDGE &copy; 2019 #### 

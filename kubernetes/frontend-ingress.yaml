@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: ibmhack
+  name: myingressresource
+spec:
+  tls:
+  - hosts:
+    - gary-cluster.syd04.containers.appdomain.cloud
+  rules:
+  - host: gary-cluster.syd04.containers.appdomain.cloud
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontend-service
+          servicePort: 8000

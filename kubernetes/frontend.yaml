@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: ibmhack
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontendimage
+        image: "gary29198/ibm-hack-frontend:latest"
+        imagePullPolicy: Always
+        command: [ "python", "-m", "http.server", "8000"]
