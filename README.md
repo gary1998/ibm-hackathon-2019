@@ -4,15 +4,16 @@
 
 <hr>
 
+**In case, you don't have pip installed on your system:**
+**<pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre>**
+**<pre>python get-pip.py</pre>**
+
+
 #### Steps to run ####
 
 **1)Install all the dependencies on your system:**
 <pre>cd source_code</pre>
 <pre>pip install requirements.txt</pre>
-
-***In case, you don't have pip installed on your system:***
-***<pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre>***
-***<pre>python get-pip.py</pre>***
 
 **2) Start the backend server by following commands:**
 <pre>python source_code/backend.py</pre>
