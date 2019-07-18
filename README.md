@@ -1,3 +1,4 @@
+![Icon](https://github.com/gary1998/ibm-hackathon-2019/blob/master/source_code/icon.png)
 # FRIEND AFFINITY FINDER v1.0 (2019) #
 ## By Team EDGE ##
 ### IBM HackChallenge 2019 ###
