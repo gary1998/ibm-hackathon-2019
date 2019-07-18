@@ -12,21 +12,22 @@
 
 #### Steps to setup using GitHub Repository: ####
 
-**0) Clone the repository, ofcourse:**
+**1) Clone the repository, ofcourse:**
 <pre>git clone https://github.com/gary1998/ibm-hackathon-2019.git</pre>
 
-**1) Install all the dependencies on your system:**
+**2) Install all the dependencies on your system:**
 <pre>cd source_code</pre>
 <pre>pip install -r requirements.txt</pre>
+***(In case you don't have pip installed on your system: )
 
-**2) Start the backend server by following commands:**
+**3) Start the backend server by following commands:**
 <pre>python source_code/backend.py</pre>
 
-**3) Start the frontend UI on server by following command:**
-If you're using Python v2.7
+**4) Start the frontend UI on server by following command:**
+***If you're using Python v2.7***
 <pre>python -m SimpleHTTPServer 5000</pre>
 
-If you're using Python v3.7
+***If you're using Python v3.7***
 <pre>python -m http.server 5000</pre>
 <hr>
 
@@ -59,7 +60,7 @@ If you're using Python v3.7
 
 <hr>
 
-<h6>In case, you don't have pip installed on your system:</h6>
+<h6>Steps to install pip v19.1.1:</h6>
 <h6><pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre></h6>
 <h6><pre>python get-pip.py</pre></h6>
 
