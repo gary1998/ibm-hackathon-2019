@@ -1,4 +1,5 @@
-<img src="https://github.com/gary1998/ibm-hackathon-2019/blob/master/source_code/icon.png" alt="Icon" height="150" width="220">
+<img src="https://github.com/gary1998/ibm-hackathon-2019/blob/master/source_code/icon.png" alt="Icon" height="150" width="220"></img>
+
 # FRIEND AFFINITY FINDER v1.0 (2019) #
 ### By Team EDGE ###
 ### For IBM HackChallenge 2019 ###
