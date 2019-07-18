@@ -4,7 +4,7 @@
 
 <hr>
 
-**In case, you don't have pip installed on your system:**
+#####In case, you don't have pip installed on your system:#####
 **<pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre>**
 **<pre>python get-pip.py</pre>**
 
