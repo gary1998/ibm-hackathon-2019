@@ -35,7 +35,10 @@
 #### Steps to use: ####
 
 **1) Access the UI on any web-browser**
+***In case, you used GitHub Repository:***
 <pre>http://localhost:8000/source_code/</pre>
+***In case, you used Docker Images:***
+<pre>http://localhost:8000/</pre>
 
 ![Dashboard](https://github.com/gary1998/ibm-hackathon-2019/blob/master/source_code/dashboard.png)
 
