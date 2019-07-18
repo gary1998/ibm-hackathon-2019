@@ -4,9 +4,9 @@
 
 <hr>
 
-#####In case, you don't have pip installed on your system:#####
-**<pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre>**
-**<pre>python get-pip.py</pre>**
+<h6>In case, you don't have pip installed on your system:</h6>
+<pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre>
+<pre>python get-pip.py</pre>
 
 
 #### Steps to run ####
