@@ -10,7 +10,7 @@
 
 #### Steps to run ####
 
-**1)Install all the dependencies on your system:**
+**1) Install all the dependencies on your system:**
 <pre>cd source_code</pre>
 <pre>pip install requirements.txt</pre>
 
