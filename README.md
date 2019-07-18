@@ -1,14 +1,16 @@
 # FRIEND AFFINITY FINDER v1.0 (2019) #
 ## By Team EDGE ##
-### IBM HackChallenge 2019 ###
-
-<hr>
-<h6>In case, you don't have pip installed on your system:</h6>
-<h6><pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre></h6>
-<h6><pre>python get-pip.py</pre></h6>
+### For IBM HackChallenge 2019 ###
 <hr>
 
-#### Steps to run ####
+### Steps to use Docker Containers: ###
+<pre> docker pull gary29198/faf-frontend:latest </pre>
+<pre> docker pull gary29198/faf-backend:latest </pre>
+<pre> docker run -d -p 5000:5000 gary29198/faf-frontend </pre>
+<pre> docker run -d -p 8000:8000 gary29198/faf-backend </pre>
+<hr>
+
+#### Steps to use Repository: ####
 
 **0) Clone the repository, ofcourse:**
 <pre>git clone https://github.com/gary1998/ibm-hackathon-2019.git</pre>
@@ -46,11 +48,9 @@
 ![3D Affinity Graph](https://github.com/gary1998/ibm-hackathon-2019/blob/master/source_code/graph.png)
 
 <hr>
-<h6> You can also use Docker Containers: <h6>
-<pre> docker pull gary29198/faf-frontend:latest </pre>
-<pre> docker pull gary29198/faf-backend:latest </pre>
-<pre> docker run -d -p 5000:5000 gary29198/faf-frontend </pre>
-<pre> docker run -d -p 8000:8000 gary29198/faf-backend </pre>
+<h6>In case, you don't have pip installed on your system:</h6>
+<h6><pre>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</pre></h6>
+<h6><pre>python get-pip.py</pre></h6>
 <hr>
 
 #### Copyright EDGE &copy; 2019 #### 
