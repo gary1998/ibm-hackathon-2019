@@ -3,7 +3,7 @@
 ### For IBM HackChallenge 2019 ###
 <hr>
 
-### Steps to use Docker Containers: ###
+#### Steps to use Docker Containers: ####
 <pre> docker pull gary29198/faf-frontend:latest </pre>
 <pre> docker pull gary29198/faf-backend:latest </pre>
 <pre> docker run -d -p 5000:5000 gary29198/faf-frontend </pre>
