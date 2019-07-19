@@ -1,0 +1,5 @@
+FROM python:3
+COPY source_code/requirements.txt requirements.txt
+COPY source_code/backend.py backend.py
+ENTRYPOINT [ "python" ]
+CMD ["backend.py"]
