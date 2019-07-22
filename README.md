@@ -21,7 +21,7 @@
 <pre>cd source_code</pre>
 <pre>pip install -r requirements.txt</pre>
 
-***(In case you don't have pip installed on your system: <a href="https://github.com/gary1998/ibm-hackathon-2019/blob/master/README.md#steps-to-install-pip-v1911">Install pip v19.1.1</a>)***
+***(In case you don't have pip installed on your system: <a href="https://github.com/gary1998/ibm-hackathon-2019#steps-to-install-pip-v1911">Install pip v19.1.1</a>)***
 
 **3) Start the backend server by following commands:**
 <pre>python source_code/backend.py</pre>
