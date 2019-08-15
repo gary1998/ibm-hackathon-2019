@@ -8,8 +8,8 @@
 #### Steps to setup using Docker Containers: ####
 <pre> docker pull gary29198/faf-frontend:latest </pre>
 <pre> docker pull gary29198/faf-backend:latest </pre>
-<pre> docker run -d -p 5000:5000 gary29198/faf-frontend </pre>
-<pre> docker run -d -p 8000:8000 gary29198/faf-backend </pre>
+<pre> docker run -d -p 8000:8000 gary29198/faf-frontend </pre>
+<pre> docker run -d -p 5000:5000 gary29198/faf-backend </pre>
 <hr>
 
 #### Steps to setup using GitHub Repository: ####
@@ -28,10 +28,10 @@
 
 **4) Start the frontend UI on server by following command:**
 ***If you're using Python v2.7***
-<pre>python -m SimpleHTTPServer 5000</pre>
+<pre>python -m SimpleHTTPServer 8000</pre>
 
 ***If you're using Python v3.7***
-<pre>python -m http.server 5000</pre>
+<pre>python -m http.server 8000</pre>
 <hr>
 
 #### Steps to use: ####

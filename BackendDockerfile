@@ -1,5 +1,6 @@
 FROM python:3
 COPY source_code/requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 COPY source_code/backend.py backend.py
 ENTRYPOINT [ "python" ]
 CMD ["backend.py"]
