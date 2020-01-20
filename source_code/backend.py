@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson import PersonalityInsightsV3, ToneAnalyzerV3, NaturalLanguageUnderstandingV1
 from ibm_watson.natural_language_understanding_v1 import Features, SentimentOptions, EmotionOptions
 import json
 import tweepy
+import time
 
 app = Flask(__name__)
 CORS(app)
@@ -30,7 +32,7 @@ def loginFunc():
         access_token_secret = request.args['accessSec']
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
         auth.set_access_token(access_token, access_token_secret)
-        data.api = tweepy.API(auth)
+        data.api = tweepy.API(auth, wait_on_rate_limit=True)
         data.userObj = data.api.me()
         for user in tweepy.Cursor(data.api.friends, screen_name=data.userObj.screen_name).items():
             data.friend.append(str(user.screen_name))
@@ -62,21 +64,23 @@ def analyzeFunc():
     if 'data' in request.args:
         text = request.args['data']
 
+        authenticatorNLU = IAMAuthenticator('rW0-13R2RqRbko3bNzOaz1E8toSIy2qH1019AWiHkMZ9')
         natural_language_understanding = NaturalLanguageUnderstandingV1(
             version='2019-07-12',
-            iam_apikey='rW0-13R2RqRbko3bNzOaz1E8toSIy2qH1019AWiHkMZ9',
-            url='https://gateway-lon.watsonplatform.net/natural-language-understanding/api'
+            authenticator=authenticatorNLU
         )
+        natural_language_understanding.set_service_url('https://gateway-lon.watsonplatform.net/natural-language-understanding/api')
         emotions = natural_language_understanding.analyze(
             text=text,
             features=Features(emotion=EmotionOptions(document=True))
         ).get_result()
 
+        authenticatorPI = IAMAuthenticator('uA6GpdKCXJyJCqJyhQEqwH9jSJxqlJhgYq7-uBBfPYL5')
         personality_insights = PersonalityInsightsV3(
             version='2017-10-13',
-            iam_apikey='uA6GpdKCXJyJCqJyhQEqwH9jSJxqlJhgYq7-uBBfPYL5',
-            url='https://gateway-lon.watsonplatform.net/personality-insights/api'
+            authenticator=authenticatorPI
         )
+        personality_insights.set_service_url('https://gateway-lon.watsonplatform.net/personality-insights/api')
         personality = personality_insights.profile(
             text.encode('utf-8'),
             'application/json'
