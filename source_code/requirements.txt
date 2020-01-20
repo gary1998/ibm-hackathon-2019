@@ -1,4 +1,5 @@
 flask
 flask_cors
+ibm_cloud_sdk_core
 ibm_watson
 tweepy

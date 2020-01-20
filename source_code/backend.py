@@ -6,7 +6,6 @@ from ibm_watson import PersonalityInsightsV3, ToneAnalyzerV3, NaturalLanguageUnd
 from ibm_watson.natural_language_understanding_v1 import Features, SentimentOptions, EmotionOptions
 import json
 import tweepy
-import time
 
 app = Flask(__name__)
 CORS(app)
